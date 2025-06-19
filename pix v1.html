@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Apoie a Gamer | Pix e Doações</title>
+  <style>
+    :root {
+      --bg-dark: #0f0f0f;
+      --primary: #e4a7cd;
+      --primary-light: #ffc5e6;
+      --secondary: #a76792;
+      --accent: #7d3cff;
+      --text-light: #f8f8f8;
+      --card-bg: #1a1a1a;
+    }
+    
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-light);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      text-align: center;
+      padding: 20px;
+      margin: 0;
+      background-image: 
+        radial-gradient(circle at 25% 25%, rgba(228, 167, 205, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(125, 60, 255, 0.1) 0%, transparent 50%);
+    }
+
+    .header {
+      max-width: 800px;
+      margin: 0 auto 40px auto;
+      padding: 20px;
+      border-bottom: 2px solid var(--primary);
+    }
+
+    .header h1 {
+      font-size: 2.8rem;
+      margin: 0;
+      background: linear-gradient(45deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .header p {
+      font-size: 1.3rem;
+      max-width: 600px;
+      margin: 20px auto;
+      line-height: 1.5;
+      color: var(--primary-light);
+    }
+
+    .avatar-container {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto;
+      border-radius: 50%;
+      border: 4px solid var(--primary);
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(228, 167, 205, 0.4);
+    }
+
+    .avatar-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .content-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .card {
+      flex: 1 1 300px;
+      background: var(--card-bg);
+      border-radius: 15px;
+      padding: 25px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      border-top: 3px solid var(--primary);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(228, 167, 205, 0.3);
+    }
+
+    .card h2 {
+      color: var(--primary);
+      margin-top: 0;
+      font-size: 1.8rem;
+    }
+
+    .value-option {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+      padding: 12px;
+      border-radius: 8px;
+      background: rgba(167, 103, 146, 0.1);
+      transition: background 0.3s;
+    }
+
+    .value-option:hover {
+      background: rgba(228, 167, 205, 0.2);
+    }
+
+    .value-option .emoji {
+      font-size: 1.5rem;
+      margin-right: 15px;
+      flex-shrink: 0;
+    }
+
+    .value-option .text {
+      text-align: left;
+      flex-grow: 1;
+    }
+
+    .value-option .price {
+      font-weight: bold;
+      color: var(--primary);
+      white-space: nowrap;
+    }
+
+    .pix-container {
+      position: relative;
+      margin: 20px 0;
+    }
+
+    .pix-container img {
+      max-width: 250px;
+      border-radius: 10px;
+      border: 4px solid var(--primary);
+      box-shadow: 0 4px 15px rgba(228, 167, 205, 0.3);
+    }
+
+    .pix-badge {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      background: var(--accent);
+      color: white;
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: bold;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    .email-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 30px auto;
+      max-width: 500px;
+    }
+
+    .email {
+      font-size: 1.2rem;
+      background: var(--card-bg);
+      padding: 12px 20px;
+      border-radius: 8px;
+      color: var(--text-light);
+      border: 2px solid var(--primary);
+      width: 260px;
+      text-align: center;
+      transition: border-color 0.3s;
+    }
+
+    .email:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    button.copy-btn {
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      color: var(--bg-dark);
+      border: none;
+      padding: 12px 25px;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 4px 10px rgba(228, 167, 205, 0.3);
+    }
+
+    button.copy-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(228, 167, 205, 0.4);
+      background: linear-gradient(45deg, var(--primary-light), var(--primary));
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(45deg, var(--primary), var(--accent));
+      color: var(--bg-dark);
+      padding: 12px 25px;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: bold;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      z-index: 9999;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .toast.show {
+      opacity: 1;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animated {
+      animation: fadeUp 0.6s ease-out both;
+    }
+
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+  </style>
+</head>
+<body>
+  <header class="header animated">
+    <div class="avatar-container delay-1">
+      <!-- Substitua pelo seu avatar -->
+      <img src="avatar2.png" alt="Avatar da Gamer">
+    </div>
+    <h1 class="delay-2">Curtiu a gameplay? Manda um Pix!</h1>
+    <p class="delay-3">Escolha um valor de acordo com o quanto você curtiu a gameplay ou se divertiu jogando comigo! 💖</p>
+  </header>
+
+  <div class="content-wrapper">
+    <div class="card animated delay-1">
+      <h2>💰 Sugestões de Apoio</h2>
+      
+      <div class="value-option">
+        <span class="emoji">🎯</span>
+        <div class="text">Jogou bem, mas a zoeira venceu</div>
+        <span class="price">R$ 2,00</span>
+      </div>
+      
+      <div class="value-option">
+        <span class="emoji">🔥</span>
+        <div class="text">Teve kill insana e segurou a partida</div>
+        <span class="price">R$ 5,00</span>
+      </div>
+      
+      <div class="value-option">
+        <span class="emoji">🤝</span>
+        <div class="text">Mesmo como adversário, respeito total!</div>
+        <span class="price">R$ 10,00</span>
+      </div>
+      
+      <div class="value-option">
+        <span class="emoji">👑</span>
+        <div class="text">Jogou limpo, com estilo e fez história!</div>
+        <span class="price">R$ 20,00</span>
+      </div>
+      <div class="value-option">
+        <span class="emoji">💜</span>
+        <div class="text">Todo apoio é especial!</div>
+        <span class="price">Outro valor</span>
+      </div>
+    </div>
+
+    <div class="card animated delay-2">
+      <h2>Faça seu Pix</h2>
+      
+      <div class="pix-container">
+        <img src="pixqrcode.png" alt="QR Code para Pix">
+        <div class="pix-badge">PIX</div>
+      </div>
+      
+      <p>Escaneie o QR Code ou use a chave abaixo:</p>
+      
+      <div class="email-container">
+        <input type="text" id="emailInput" class="email" value="abauna25@gmail.com" readonly>
+        <button class="copy-btn" onclick="copyEmail()">Copiar Chave</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">Chave copiada com sucesso!</div>
+
+  <script>
+    function copyEmail() {
+      const emailInput = document.getElementById("emailInput");
+      emailInput.select();
+      emailInput.setSelectionRange(0, 99999);
+      document.execCommand("copy");
+
+      const toast = document.getElementById("toast");
+      toast.classList.add("show");
+      setTimeout(() => {
+        toast.classList.remove("show");
+      }, 2000);
+    }
+  </script>
+</body>
+</html>
